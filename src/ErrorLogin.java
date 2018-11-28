@@ -10,42 +10,38 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
+import java.awt.Font;
 
 public class ErrorLogin extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private final JPanel contentPanel = new JPanel();
 
 	
 	//Create the dialog.
 	 
 	public ErrorLogin() {
-		setBounds(100, 100, 450, 300);
-		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(Color.YELLOW);
-		contentPanel.setLayout(new FlowLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		getContentPane().setBackground(Color.YELLOW);
+		setBounds(100, 100, 490, 223);
+		getContentPane().setLayout(null);
 		{
-			JLabel lblPleaseEnterCorrect = new JLabel("PLEASE ENTER CORRECT  DETAIILS");
+			JLabel lblPleaseEnterCorrect = new JLabel("PLEASE ENTER CORRECT  DETAILS");
+			lblPleaseEnterCorrect.setFont(new Font("Chiller", Font.BOLD | Font.ITALIC, 30));
+			lblPleaseEnterCorrect.setBounds(24, 60, 432, 48);
+			getContentPane().add(lblPleaseEnterCorrect);
 			lblPleaseEnterCorrect.setHorizontalAlignment(SwingConstants.CENTER);
-			contentPanel.add(lblPleaseEnterCorrect);
 		}
 		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton cancelButton = new JButton("Close");
-				cancelButton.setHorizontalAlignment(SwingConstants.RIGHT);
-				cancelButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						 dispose();
-					}
-				});
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
+			JButton cancelButton = new JButton("Close");
+			cancelButton.setForeground(Color.YELLOW);
+			cancelButton.setBounds(193, 130, 59, 31);
+			getContentPane().add(cancelButton);
+			cancelButton.setHorizontalAlignment(SwingConstants.RIGHT);
+			cancelButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					 dispose();
+				}
+			});
+			cancelButton.setActionCommand("Cancel");
 		}
 	}
 
