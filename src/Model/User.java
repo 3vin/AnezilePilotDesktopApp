@@ -13,14 +13,13 @@ public class User {
    		
    		
    	}
-	public User(int userID, String userName,String lastName ,String firstName, String role, int studentID, String password) {
+	public User(int userID, String userName,String lastName ,String firstName, String role, String password) {
 		super();
 		this.userID = userID;
 		this.userName = userName;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.role = role;
-		this.studentID = studentID;
 		this.password = password;
 	}
 	

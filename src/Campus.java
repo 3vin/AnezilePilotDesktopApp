@@ -39,6 +39,7 @@ public class Campus extends JFrame {
 	private JLabel lblOurprog;
 	private JLabel lblContactus;
 	private JLabel imgSelector;
+	ConnectDB dbconn = new ConnectDB();
 
 	// Create the frame.
 	public Campus() {
@@ -161,17 +162,13 @@ public class Campus extends JFrame {
 	private void propEvent() {
 		btnSignin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ConnectDB dbconn = new ConnectDB();
-				// Login
-
 				String username = txtusername.getText();
 				@SuppressWarnings("deprecation")
 				String password = passwordField.getText();
 
 				try {
 
-					if (username.trim()
-							.equals(dbconn.userLogin(username.trim(), password.trim()).getUserName().trim())) {
+					if (username.trim().equals(dbconn.userLogin(username.trim(), password).getUserName().trim())) {
 						User user = new User();
 						user = dbconn.userLogin(username.trim(), password.trim());
 						Classroom frmclass = new Classroom(user);
@@ -214,8 +211,7 @@ public class Campus extends JFrame {
 
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-//				ConnectDB dbconn = new ConnectDB();
-				// Login
+
 
 				Register dialog = new Register();
 //				dialog.setModalityType(ModalityType.APPLICATION_MODAL);

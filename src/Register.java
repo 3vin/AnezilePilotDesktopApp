@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import Database.ConnectDB;
+import Model.User;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -24,10 +26,7 @@ public class Register extends JFrame {
 	private JPasswordField passwordField;
 	private JTextField txtFirstNmae;
 	private JTextField txtLastName;
-	private JTextField txtLearnerUername;
-
-	
-	 // Create the 
+	private JTextField txtLearnerUername; 
 	 
 	public Register() {
 		
@@ -36,66 +35,88 @@ public class Register extends JFrame {
 		setBackground(Color.WHITE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img/Anezile icon.PNG"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 690, 510);
+		setBounds(100, 100, 420, 420);
 		setVisible(true);
 		setContentPane(contentPane = new JPanel());
 		contentPane.setBackground(Color.YELLOW);
 		contentPane.setLayout(null);
 		
 		JLabel lblRegisterUser = new JLabel("Register User");
-		lblRegisterUser.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblRegisterUser.setBounds(140, 23, 275, 30);
+		lblRegisterUser.setFont(new Font("Chiller", Font.BOLD, 36));
+		lblRegisterUser.setBounds(37, 25, 275, 30);
 		contentPane.add(lblRegisterUser);
 		
 		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setBounds(10, 82, 157, 22);
+		lblUsername.setFont(new Font("Chiller", Font.BOLD, 22));
+		lblUsername.setBounds(10, 82, 92, 22);
 		contentPane.add(lblUsername);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(10, 115, 157, 22);
+		lblPassword.setFont(new Font("Chiller", Font.BOLD, 22));
+		lblPassword.setBounds(10, 115, 92, 22);
 		contentPane.add(lblPassword);
 		
 		JLabel lblFirstname = new JLabel("First Name");
-		lblFirstname.setBounds(10, 148, 157, 22);
+		lblFirstname.setFont(new Font("Chiller", Font.BOLD, 22));
+		lblFirstname.setBounds(10, 148, 92, 22);
 		contentPane.add(lblFirstname);
 		
 		JLabel lblLastName = new JLabel("Last Name");
-		lblLastName.setBounds(10, 188, 157, 22);
+		lblLastName.setFont(new Font("Chiller", Font.BOLD, 22));
+		lblLastName.setBounds(10, 188, 92, 22);
 		contentPane.add(lblLastName);
 		
 		txtUsername = new JTextField();
-		txtUsername.setBounds(177, 83, 222, 22);
+		txtUsername.setForeground(Color.YELLOW);
+		txtUsername.setBackground(Color.BLACK);
+		txtUsername.setBounds(115, 82, 256, 22);
 		contentPane.add(txtUsername);
 		txtUsername.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(177, 116, 222, 20);
+		passwordField.setForeground(Color.YELLOW);
+		passwordField.setBackground(Color.BLACK);
+		passwordField.setBounds(115, 115, 256, 20);
 		contentPane.add(passwordField);
 		
 		txtFirstNmae = new JTextField();
+		txtFirstNmae.setBackground(Color.BLACK);
+		txtFirstNmae.setForeground(Color.YELLOW);
 		txtFirstNmae.setColumns(10);
-		txtFirstNmae.setBounds(177, 149, 222, 22);
+		txtFirstNmae.setBounds(115, 148, 256, 22);
 		contentPane.add(txtFirstNmae);
 		
 		txtLastName = new JTextField();
+		txtLastName.setForeground(Color.YELLOW);
+		txtLastName.setBackground(Color.BLACK);
 		txtLastName.setColumns(10);
-		txtLastName.setBounds(177, 189, 222, 22);
+		txtLastName.setBounds(115, 188, 256, 22);
 		contentPane.add(txtLastName);
 		
 		JLabel lblRole = new JLabel("Role");
-		lblRole.setBounds(10, 233, 157, 22);
+		lblRole.setFont(new Font("Chiller", Font.BOLD, 22));
+		lblRole.setBounds(10, 233, 92, 22);
 		contentPane.add(lblRole);
 		
 		JRadioButton rdbtnlearner = new JRadioButton("Learner");
-		rdbtnlearner.setBounds(174, 233, 74, 23);
+		rdbtnlearner.setFont(new Font("Chiller", Font.PLAIN, 16));
+		rdbtnlearner.setForeground(Color.YELLOW);
+		rdbtnlearner.setBackground(Color.BLACK);
+		rdbtnlearner.setBounds(115, 234, 74, 23);
 		contentPane.add(rdbtnlearner);
 		
 		JRadioButton rdbtnTeacher = new JRadioButton("Teacher");
-		rdbtnTeacher.setBounds(274, 233, 74, 23);
+		rdbtnTeacher.setForeground(Color.YELLOW);
+		rdbtnTeacher.setFont(new Font("Chiller", Font.PLAIN, 16));
+		rdbtnTeacher.setBackground(Color.BLACK);
+		rdbtnTeacher.setBounds(200, 233, 74, 23);
 		contentPane.add(rdbtnTeacher);
 		
 		JRadioButton rdbtnParent = new JRadioButton("Parent");
-		rdbtnParent.setBounds(381, 233, 74, 23);
+		rdbtnParent.setFont(new Font("Chiller", Font.PLAIN, 16));
+		rdbtnParent.setBackground(Color.BLACK);
+		rdbtnParent.setForeground(Color.YELLOW);
+		rdbtnParent.setBounds(297, 233, 74, 23);
 		contentPane.add(rdbtnParent);
 		ButtonGroup group = new ButtonGroup();
 		group.add(rdbtnlearner);
@@ -103,31 +124,32 @@ public class Register extends JFrame {
 		group.add(rdbtnParent);
 		
 		
-		JLabel lblLearnerUsername = new JLabel("IF your are Parent Learner Username");
-		lblLearnerUsername.setBounds(177, 260, 222, 22);
-		lblLearnerUsername.setVisible(false);
+		JLabel lblLearnerUsername = new JLabel("If your are Parent Learner Username");
+		lblLearnerUsername.setLabelFor(lblLearnerUsername);
+		lblLearnerUsername.setFont(new Font("Chiller", Font.BOLD, 18));
+		lblLearnerUsername.setBounds(115, 266, 236, 22);
 		contentPane.add(lblLearnerUsername);
 		
 		txtLearnerUername = new JTextField();
+		txtLearnerUername.setForeground(Color.YELLOW);
+		txtLearnerUername.setBackground(Color.BLACK);
+		txtLearnerUername.setFont(new Font("Chiller", Font.PLAIN, 16));
 		txtLearnerUername.setEnabled(true);
 		txtLearnerUername.setColumns(10);
-		txtLearnerUername.setBounds(177, 286, 222, 22);
+		txtLearnerUername.setBounds(115, 299, 222, 22);
 		contentPane.add(txtLearnerUername);
 		
 		JButton btnRegister = new JButton("Register");
+		btnRegister.setBackground(Color.BLACK);
+		btnRegister.setForeground(Color.YELLOW);
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ConnectDB dbconn = new ConnectDB();
 				//Login 
-				
-				String username =txtUsername.getText();
-				@SuppressWarnings("deprecation")
-				String password= passwordField.getText();
-				String firstName = txtFirstNmae.getText();
-				String lastName = txtLastName.getText();
 				String role="";
-				String Studentusername =txtLearnerUername.getText();
 				
+				
+								
 				if(rdbtnlearner.isSelected()) {
 					 role ="student";
 				}
@@ -137,10 +159,11 @@ public class Register extends JFrame {
 				if(rdbtnTeacher.isSelected()) {
 					 role ="teacher";
 				}
-			    
+			    @SuppressWarnings("deprecation")
+				User  user = new User(1,txtUsername.getText(), txtFirstNmae.getText(),txtLastName.getText(), passwordField.getText(), role);
 				try {
 					
-					if(username.trim().equals("") || password.trim().equals("")){
+					if(user.getFirstName().equals("") || user.getPassword().equals("")){
 						ErrorLogin dialog = new ErrorLogin();
 				        dialog.setModalityType(ModalityType.APPLICATION_MODAL);
 				        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -149,7 +172,7 @@ public class Register extends JFrame {
 					
 					}
 					else {
-						dbconn.Register(username, password, firstName, lastName, role, Studentusername);
+						dbconn.Register(user);
 						ConfirmRegister dialog = new ConfirmRegister();
 				        dialog.setModalityType(ModalityType.APPLICATION_MODAL);
 				        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -165,8 +188,8 @@ public class Register extends JFrame {
 				
 			}
 		});
-		btnRegister.setFont(new Font("Tahoma", Font.BOLD, 17));
-		btnRegister.setBounds(174, 347, 241, 45);
+		btnRegister.setFont(new Font("Chiller", Font.BOLD, 26));
+		btnRegister.setBounds(10, 324, 341, 45);
 		contentPane.add(btnRegister);
 	}
 }
