@@ -10,25 +10,24 @@ import java.awt.Font;
 public class ErrorLogin extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-
-	
-	//Create the dialog.
 	 
 	public ErrorLogin() {
 		getContentPane().setBackground(Color.YELLOW);
-		setBounds(100, 100, 490, 223);
+		setBounds(100, 100, 469, 190);
 		getContentPane().setLayout(null);
 		{
 			JLabel lblPleaseEnterCorrect = new JLabel("PLEASE ENTER CORRECT  DETAILS");
 			lblPleaseEnterCorrect.setFont(new Font("Chiller", Font.BOLD | Font.ITALIC, 30));
-			lblPleaseEnterCorrect.setBounds(24, 60, 432, 48);
+			lblPleaseEnterCorrect.setBounds(10, 34, 432, 48);
 			getContentPane().add(lblPleaseEnterCorrect);
 			lblPleaseEnterCorrect.setHorizontalAlignment(SwingConstants.CENTER);
 		}
 		{
 			JButton cancelButton = new JButton("Close");
+			cancelButton.setFont(new Font("Chiller", Font.BOLD, 20));
+			cancelButton.setBackground(Color.BLACK);
 			cancelButton.setForeground(Color.YELLOW);
-			cancelButton.setBounds(193, 130, 59, 31);
+			cancelButton.setBounds(197, 93, 69, 35);
 			getContentPane().add(cancelButton);
 			cancelButton.setHorizontalAlignment(SwingConstants.RIGHT);
 			cancelButton.addActionListener(new ActionListener() {

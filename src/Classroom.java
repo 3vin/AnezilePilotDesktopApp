@@ -2,6 +2,7 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Font;
@@ -65,10 +66,19 @@ public class Classroom extends JFrame {
 		txtans3 = new JTextField();
 		txtans4 = new JTextField();
 		btnSubmit = new JButton("Submit");
+		btnSubmit.setBackground(Color.BLACK);
+		btnSubmit.setForeground(Color.YELLOW);
+		btnSubmit.setFont(new Font("Chiller", Font.BOLD, 22));
 		lblquestion = new JLabel();
 		lblQuestion = new JLabel("Question");
-		btnDisplayTheFirst = new JButton("Generate the first question");
-		btnNewButton = new JButton("Provide the first question");
+		btnDisplayTheFirst = new JButton("Generate next question");
+		btnDisplayTheFirst.setBackground(Color.BLACK);
+		btnDisplayTheFirst.setForeground(Color.YELLOW);
+		btnDisplayTheFirst.setFont(new Font("Chiller", Font.PLAIN, 18));
+		btnNewButton = new JButton("Provide next question");
+		btnNewButton.setBackground(Color.BLACK);
+		btnNewButton.setForeground(Color.YELLOW);
+		btnNewButton.setFont(new Font("Chiller", Font.PLAIN, 18));
 //		this.user =user;
 		
 		lblhello = new JLabel("Hello "+ user.getFirstName() + " " + user.getLastName()+", All the best with you excerises");
@@ -77,7 +87,6 @@ public class Classroom extends JFrame {
 		lblhello.setBounds(53, 114, 470, 60);
 		contentPane.add(lblhello);
 		methodselector();
-		
 		
 		JLabel imgContainer = new JLabel();
 		imgContainer.setBounds(0, 0, 700, 470);
@@ -338,7 +347,7 @@ public class Classroom extends JFrame {
 		lblquestion.setBounds(30, 30, 188, 42);
 		pnladd.add(lblquestion);
 		
-		btnDisplayTheFirst.setBounds(231, 11, 163, 23);
+		btnDisplayTheFirst.setBounds(231, 11, 188, 23);
 		btnDisplayTheFirst.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				randnumber = r.nextInt(4);
@@ -351,7 +360,7 @@ public class Classroom extends JFrame {
 		});
 		pnladd.add(btnDisplayTheFirst);
 		
-		btnNewButton.setBounds(231, 44, 163, 23);
+		btnNewButton.setBounds(231, 44, 188, 23);
 		pnladd.add(btnNewButton);
 		
 		lblQuestion.setBounds(30, 15, 60, 20);
@@ -384,7 +393,7 @@ public class Classroom extends JFrame {
 		pnladd.add(txtans4);
 		txtans4.setColumns(10);
 		
-		btnSubmit.setBounds(30, 167, 89, 23);
+		btnSubmit.setBounds(30, 167, 200, 23);
 		pnladd.add(btnSubmit);
 	}
 	//subtraction method
@@ -457,5 +466,33 @@ public class Classroom extends JFrame {
 		
 		btnSubmit.setBounds(30, 167, 89, 23);
 		pnlsub.add(btnSubmit);
+
+		@SuppressWarnings("rawtypes")
+		JList listcomplete = new JList();
+		listcomplete.setValueIsAdjusting(true);
+		listcomplete.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		listcomplete.setBackground(Color.YELLOW);
+		listcomplete.setBounds(420, 200, 221, 114);
+		pnlsub.add(listcomplete);
+		
+		@SuppressWarnings("rawtypes")
+		JList listcomputer = new JList();
+		listcomputer.setValueIsAdjusting(true);
+		listcomputer.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		listcomputer.setBackground(Color.YELLOW);
+		listcomputer.setBounds(420, 60, 221, 114);
+		pnlsub.add(listcomputer);
+		
+		JLabel lblcomplete = new JLabel("Learner Box");
+		lblcomplete.setFont(new Font("Chiller", Font.BOLD, 24));
+		lblcomplete.setBounds(420, 175, 138, 25);
+		lblcomplete.setForeground(Color.BLACK);
+		pnlsub.add(lblcomplete);
+		
+		JLabel lblComputerBox = new JLabel("Computer Box");
+		lblComputerBox.setFont(new Font("Chiller", Font.BOLD, 24));
+		lblComputerBox.setBounds(420, 30, 159, 29);
+		lblComputerBox.setForeground(Color.BLACK);
+		pnlsub.add(lblComputerBox);
 	}
 }

@@ -32,7 +32,7 @@ public class Register extends JFrame {
 		
 		setTitle("Anezile Academy");
 		setResizable(false);
-		setBackground(Color.WHITE);
+		setBackground(Color.YELLOW);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img/Anezile icon.PNG"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 420, 420);
@@ -168,8 +168,6 @@ public class Register extends JFrame {
 				        dialog.setModalityType(ModalityType.APPLICATION_MODAL);
 				        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				        dialog.setVisible(true);
-					    dispose();
-					
 					}
 					else {
 						dbconn.Register(user);
@@ -177,8 +175,7 @@ public class Register extends JFrame {
 				        dialog.setModalityType(ModalityType.APPLICATION_MODAL);
 				        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				        dialog.setVisible(true);
-					    dispose();
-						
+					    dispose();		
 					}
 					
 				} catch (SQLException e) {
