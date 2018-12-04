@@ -61,7 +61,7 @@ public class ConnectDB {
 	
 	//User login.
 	public User userLogin(String username,String password) throws SQLException {
-
+		System.out.println("Login");
 		User user =null;
 		Statement state = createConnection().createStatement();
 		String query = "select * from Users  where   userName = '"+username+"' and password = '"+password+"';";
@@ -110,7 +110,7 @@ public class ConnectDB {
 	// User register.
 	public String Register(User user) throws SQLException {
 
-		
+		System.out.println("Register");
 		Statement state = createConnection().createStatement();
 		String query = "INSERT INTO Users (userName,firstName,lastName,studentID,password,role) "
 			       	+ "VALUES ('"+user.getUserName()+"', '"+user.getFirstName()+"', '"+user.getLastName()+"',"+
