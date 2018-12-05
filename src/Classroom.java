@@ -3,6 +3,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Font;
@@ -14,7 +15,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Random;
 import javax.swing.JTextField;
 
 public class Classroom extends JFrame {
@@ -26,6 +26,8 @@ public class Classroom extends JFrame {
 	public JPanel pnlmethod;
 	public JPanel pnladd;
 	public JPanel pnlsub;
+	public JPanel pnlmul;
+	public JPanel pnldiv;	
 	private JLabel lbldavlabel;
 	private JLabel lblstatement;
 	private JLabel lblplus;
@@ -33,7 +35,7 @@ public class Classroom extends JFrame {
 	private JLabel lbltimes;
 	private JLabel lblminus;
 	private JLabel lblhello;
-	private JTextField textans1;
+	private JTextField txtans1;
 	private JTextField txtans2;
 	private JTextField txtans3;
 	private JTextField txtans4;
@@ -43,12 +45,16 @@ public class Classroom extends JFrame {
 	private JButton btnNewButton;
 	private JLabel lblQuestion;
 	private String setMethod;
+	JLabel lblComputerBox;
+	JLabel lbllearner;		
+	@SuppressWarnings("rawtypes")
+	JList listcomputer;
+	@SuppressWarnings("rawtypes")
+	JList listlearner;
 //	private User user;
-	int i = 0;
-	Random r = new Random();
-	int randnumber = r.nextInt(4);
-	String[] strSolution = new String[10];
+
 	// Create the frame.
+	@SuppressWarnings("rawtypes")
 	public Classroom(User user) {
 		super("Anezile academy");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img/Anezile_icon.PNG"));
@@ -61,7 +67,9 @@ public class Classroom extends JFrame {
 		contentPane.setLayout(null);
 		pnlsub = new JPanel();
 		pnladd = new JPanel();
-		textans1 = new JTextField();
+		pnlmul = new JPanel();
+		pnldiv = new JPanel();
+		txtans1 = new JTextField();
 		txtans2 = new JTextField();
 		txtans3 = new JTextField();
 		txtans4 = new JTextField();
@@ -71,6 +79,10 @@ public class Classroom extends JFrame {
 		btnSubmit.setFont(new Font("Chiller", Font.BOLD, 22));
 		lblquestion = new JLabel();
 		lblQuestion = new JLabel("Question");
+		lblComputerBox = new JLabel("Computer Box");
+		lbllearner = new JLabel("Learner Box");		
+		listcomputer = new JList();
+		listlearner = new JList();
 		btnDisplayTheFirst = new JButton("Generate next question");
 		btnDisplayTheFirst.setBackground(Color.BLACK);
 		btnDisplayTheFirst.setForeground(Color.YELLOW);
@@ -183,10 +195,6 @@ public class Classroom extends JFrame {
 				lblhello.setText("Click the button to go back ->");
 				pnlsub.setVisible(false);
 				setMethod = "+";
-				strSolution[0] = "342+536.(300+500) + (40 + 30) + (2 + 6)=800 + 70 + 8=878";
-				strSolution[1] = "234+436.(200+400) + (30 + 30) + (4 + 6)=600 + (60 + 10)=600 + 70=670";
-				strSolution[2] = "672+126.(600+100) + (70 + 20) + (2 + 6)=700 + 90 + 8=978";
-				strSolution[3] = "333+166.(300+100) + (30 + 60) + (3 + 6)=400 + 90 + 9=499";
 				}
 				@Override				
 				public void mouseEntered(MouseEvent arg0) {
@@ -244,8 +252,8 @@ public class Classroom extends JFrame {
 				btnBack.setVisible(true);
 				pnladd.setVisible(false);
 				pnlsub.setVisible(false);
-				lblhello.setText("Click the button to go back ->");
-				setMethod = lbltimes.getText();
+				lblhello.setText("Multiplication exercises");
+				setMethod = "x";
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -272,13 +280,9 @@ public class Classroom extends JFrame {
 				pnlmethod.setVisible(false);
 				btnBack.setVisible(true);
 				pnladd.setVisible(false);
-				lblhello.setText("Click button to return to seletion panel ->");
+				lblhello.setText("Substration Exercises");
 				subtractionpnl();
 				setMethod = "-";
-				strSolution[0] = "768-536.(700-500) + (60-30) + (8-6)=200 + 30 + 2=232";
-				strSolution[1] = "900-436.(900-400) + (0-30) + (0-6)=(800-400) + (90+30) + (10-6)=400 + 60 + 4=464";
-				strSolution[2] = "672-126.(600-100) + (70-20) + (2-6)=700 + 90 + 8=978";
-				strSolution[3] = "333-166.(300-100) + (30-60) + (3-6)=(200-100) + (120-60) + (13-6)=100 + 60 + 7=167";
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -308,17 +312,29 @@ public class Classroom extends JFrame {
 				
 				String test = lblhello.getText();
 				
-				if (test.equals("Click  button  to  continue with exercise ->")) {
+				if (test.equals("Click button to continue with exercise ->")) {
 					pnlmethod.setVisible(false);
 					if (setMethod.equals("+")){
 						pnladd.setVisible(true);
 						pnlsub.setVisible(false);
+						lblhello.setText("Addition exercise. Good luck!");
 					}
-					if (setMethod.equals("-")){
+					else if (setMethod.equals("-")){
 						pnladd.setVisible(false);
 						pnlsub.setVisible(true);
+						lblhello.setText("Substruction exercise. Good luck!");
 					}
-					lblhello.setText("Click button to return to seletion panel ->");
+					else if (setMethod.equals("x")){
+						pnladd.setVisible(false);
+						pnlsub.setVisible(false);
+						lblhello.setText("Multiplicatio exercise. Good luck!");
+					}
+					else if (setMethod.equals("÷")){
+						pnladd.setVisible(false);
+						pnlsub.setVisible(false);
+						lblhello.setText("Division exercise. Good luck!");
+					}
+
 				}
 				else {
 					pnlmethod.setVisible(true);
@@ -341,18 +357,11 @@ public class Classroom extends JFrame {
 		contentPane.add(pnladd);
 		pnladd.setLayout(null);
 		
-		lblquestion.setText("E.g. : 123 + 456");
-		lblquestion.setForeground(Color.BLACK);
-		lblquestion.setFont(new Font("Chiller", Font.PLAIN, 30));
-		lblquestion.setBounds(30, 30, 188, 42);
-		pnladd.add(lblquestion);
-		
-		btnDisplayTheFirst.setBounds(231, 11, 188, 23);
+		btnDisplayTheFirst.setBounds(30, 10, 188, 25);
 		btnDisplayTheFirst.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				randnumber = r.nextInt(4);
-				lblquestion.setText(strSolution[randnumber].substring(0,strSolution[randnumber].indexOf(".") ));
-				textans1.setText("=");
+				lblquestion.setText("");
+				txtans1.setText("=");
 				txtans2.setText("=");
 				txtans3.setText("=");
 				txtans4.setText("=");
@@ -360,41 +369,80 @@ public class Classroom extends JFrame {
 		});
 		pnladd.add(btnDisplayTheFirst);
 		
-		btnNewButton.setBounds(231, 44, 188, 23);
+		btnNewButton.setBounds(30, 50, 188, 25);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String fnum = JOptionPane.showInputDialog("Enter first number");
+				String Snum = JOptionPane.showInputDialog("Enter Second number");
+				lblquestion.setText(fnum + "+" + Snum);
+				txtans1.setText("=");
+				txtans2.setText("=");
+				txtans3.setText("=");
+				txtans4.setText("=");
+			}
+		});
 		pnladd.add(btnNewButton);
 		
-		lblQuestion.setBounds(30, 15, 60, 20);
+		lblQuestion.setBounds(30, 80, 60, 20);
 		pnladd.add(lblQuestion);
 		
-		textans1.setBackground(Color.BLACK);
-		textans1.setForeground(Color.YELLOW);
-		textans1.setText("=(100 + 400) + (20 + 50) + (3 + 6)");
-		textans1.setBounds(30, 80, 200, 20);
-		pnladd.add(textans1);
-		textans1.setColumns(10);
+		lblquestion.setText("E.g. : 123 + 456");
+		lblquestion.setForeground(Color.BLACK);
+		lblquestion.setFont(new Font("Chiller", Font.PLAIN, 30));
+		lblquestion.setBounds(30, 110, 188, 40);
+		pnladd.add(lblquestion);
+		
+		txtans1.setBackground(Color.BLACK);
+		txtans1.setForeground(Color.YELLOW);
+		txtans1.setText("=(100 + 400) + (20 + 50) + (3 + 6)");
+		txtans1.setBounds(30, 150, 200, 20);
+		pnladd.add(txtans1);
+		txtans1.setColumns(10);
 		
 		txtans2.setBackground(Color.BLACK);
 		txtans2.setForeground(Color.YELLOW);
 		txtans2.setText("=500 + 70 + 9");
-		txtans2.setBounds(30, 100, 200, 20);
+		txtans2.setBounds(30, 170, 200, 20);
 		pnladd.add(txtans2);
 		txtans2.setColumns(10);
 		
 		txtans3.setBackground(Color.BLACK);
 		txtans3.setForeground(Color.YELLOW);
 		txtans3.setText("=579");
-		txtans3.setBounds(30, 120, 200, 20);
+		txtans3.setBounds(30, 190, 200, 20);
 		pnladd.add(txtans3);
 		txtans3.setColumns(10);
 		
 		txtans4.setBackground(Color.BLACK);
 		txtans4.setForeground(Color.YELLOW);
-		txtans4.setBounds(30, 140, 200, 20);
+		txtans4.setBounds(30, 210, 200, 20);
 		pnladd.add(txtans4);
 		txtans4.setColumns(10);
 		
-		btnSubmit.setBounds(30, 167, 200, 23);
+		btnSubmit.setBounds(30, 240, 200, 23);
 		pnladd.add(btnSubmit);
+		
+		listlearner.setValueIsAdjusting(true);
+		listlearner.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		listlearner.setBackground(Color.YELLOW);
+		listlearner.setBounds(420, 170, 221, 114);
+		pnladd.add(listlearner);
+
+		listcomputer.setValueIsAdjusting(true);
+		listcomputer.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		listcomputer.setBackground(Color.YELLOW);
+		listcomputer.setBounds(420, 30, 221, 114);
+		pnladd.add(listcomputer);
+
+		lbllearner.setFont(new Font("Chiller", Font.BOLD, 24));
+		lbllearner.setBounds(420, 150, 138, 25);
+		lbllearner.setForeground(Color.BLACK);
+		pnladd.add(lbllearner);
+		
+		lblComputerBox.setFont(new Font("Chiller", Font.BOLD, 24));
+		lblComputerBox.setBounds(420, 5, 159, 29);
+		lblComputerBox.setForeground(Color.BLACK);
+		pnladd.add(lblComputerBox);
 	}
 	//subtraction method
 	void subtractionpnl() {
@@ -412,13 +460,11 @@ public class Classroom extends JFrame {
 		lblquestion.setForeground(Color.BLACK);
 		pnlsub.add(lblquestion);
 		
-		
 		btnDisplayTheFirst.setBounds(231, 11, 163, 23);
 		btnDisplayTheFirst.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				randnumber = r.nextInt(4);
-				lblquestion.setText(strSolution[randnumber].substring(0,strSolution[randnumber].indexOf(".") ));
-				textans1.setText("=");
+				lblquestion.setText("Substract");
+				txtans1.setText("=");
 				txtans2.setText("=");
 				txtans3.setText("=");
 				txtans4.setText("=");
@@ -427,20 +473,29 @@ public class Classroom extends JFrame {
 		pnlsub.add(btnDisplayTheFirst);
 
 		btnNewButton.setBounds(231, 44, 163, 23);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String fnum = JOptionPane.showInputDialog("Enter first number");
+				String Snum = JOptionPane.showInputDialog("Enter Second number");
+				lblquestion.setText(fnum + "+" + Snum);
+				txtans1.setText("=");
+				txtans2.setText("=");
+				txtans3.setText("=");
+				txtans4.setText("=");
+			}
+		});
 		pnlsub.add(btnNewButton);
 
 		lblQuestion.setBounds(30, 15, 60, 30);
 		lblQuestion.setForeground(Color.BLACK);
 		pnlsub.add(lblQuestion);
 		
-		
-		textans1.setBackground(Color.BLACK);
-		textans1.setForeground(Color.YELLOW);
-		textans1.setText("=(600 - 300) + (50 - 20) + (4 - 1)");
-		textans1.setBounds(30, 80, 200, 20);
-		pnlsub.add(textans1);
-		textans1.setColumns(10);
-		
+		txtans1.setBackground(Color.BLACK);
+		txtans1.setForeground(Color.YELLOW);
+		txtans1.setText("=(600 - 300) + (50 - 20) + (4 - 1)");
+		txtans1.setBounds(30, 80, 200, 20);
+		pnlsub.add(txtans1);
+		txtans1.setColumns(10);
 		
 		txtans2.setBackground(Color.BLACK);
 		txtans2.setForeground(Color.YELLOW);
@@ -449,14 +504,12 @@ public class Classroom extends JFrame {
 		pnlsub.add(txtans2);
 		txtans2.setColumns(10);
 		
-		
 		txtans3.setBackground(Color.BLACK);
 		txtans3.setForeground(Color.YELLOW);
 		txtans3.setText("=333");
 		txtans3.setBounds(30, 120, 200, 20);
 		pnlsub.add(txtans3);
 		txtans3.setColumns(10);
-		
 		
 		txtans4.setBackground(Color.BLACK);
 		txtans4.setForeground(Color.YELLOW);
@@ -467,31 +520,26 @@ public class Classroom extends JFrame {
 		btnSubmit.setBounds(30, 167, 89, 23);
 		pnlsub.add(btnSubmit);
 
-		@SuppressWarnings("rawtypes")
-		JList listcomplete = new JList();
-		listcomplete.setValueIsAdjusting(true);
-		listcomplete.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		listcomplete.setBackground(Color.YELLOW);
-		listcomplete.setBounds(420, 200, 221, 114);
-		pnlsub.add(listcomplete);
-		
-		@SuppressWarnings("rawtypes")
-		JList listcomputer = new JList();
+		listlearner.setValueIsAdjusting(true);
+		listlearner.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		listlearner.setBackground(Color.YELLOW);
+		listlearner.setBounds(420, 170, 221, 114);
+		pnlsub.add(listlearner);
+
 		listcomputer.setValueIsAdjusting(true);
 		listcomputer.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		listcomputer.setBackground(Color.YELLOW);
-		listcomputer.setBounds(420, 60, 221, 114);
+		listcomputer.setBounds(420, 40, 221, 114);
 		pnlsub.add(listcomputer);
+
+		lbllearner.setFont(new Font("Chiller", Font.BOLD, 24));
+		lbllearner.setBounds(420, 150, 138, 25);
+		lbllearner.setForeground(Color.BLACK);
+		pnlsub.add(lbllearner);
 		
-		JLabel lblcomplete = new JLabel("Learner Box");
-		lblcomplete.setFont(new Font("Chiller", Font.BOLD, 24));
-		lblcomplete.setBounds(420, 175, 138, 25);
-		lblcomplete.setForeground(Color.BLACK);
-		pnlsub.add(lblcomplete);
 		
-		JLabel lblComputerBox = new JLabel("Computer Box");
 		lblComputerBox.setFont(new Font("Chiller", Font.BOLD, 24));
-		lblComputerBox.setBounds(420, 30, 159, 29);
+		lblComputerBox.setBounds(420, 5, 159, 29);
 		lblComputerBox.setForeground(Color.BLACK);
 		pnlsub.add(lblComputerBox);
 	}
